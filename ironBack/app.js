@@ -12,7 +12,7 @@ const cards = require('./routes/cards');
 var app = express();
 app.use(require("cors")());
 
-require("mongoose").connect("mongodb://localhost/irontrello");
+require("mongoose").connect("mongodb://bliss:bliss@ds249798.mlab.com:49798/bliss");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+//app.use('/', index);
 app.use('/api/lists', lists);
 app.use('/api/cards', cards);
 
