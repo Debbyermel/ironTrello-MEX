@@ -1,0 +1,9 @@
+.list-element{
+    padding: 20px;
+    background-color: gainsboro;
+    margin:0 5px;
+}
+
+.edit-title-container{
+    display: flex;
+}

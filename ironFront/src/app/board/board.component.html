@@ -1,0 +1,14 @@
+<section class="main-container">
+
+  <h1>BlisSrello</h1>
+  <article class="lists-container" [dragula]='"bliss"' [dragulaModel]="lists">
+    <app-list (removeList)="listRemove($event)" (editTitle)="putList($event)" [list]="list" *ngFor="let list of lists" ></app-list>
+
+    <div class="form-list">
+      <input (keydown.enter)="addList(title)" [(ngModel)]="title" type="text" placeholder="Add new List...">
+    </div>
+
+  </article>
+
+
+</section>

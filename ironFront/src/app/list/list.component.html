@@ -1,0 +1,10 @@
+<section>
+  <article class="list-element">
+    <h3 *ngIf="!showEdit" (click)="showInput()" >{{list.title}}</h3>
+    <div *ngIf="showEdit" class="edit-title-container">
+      <input (keydown.enter)="sendModification()" type="text" [(ngModel)]="list.title">
+      <fa (click)="deleteList()" [name]="'trash'"></fa>
+    </div>
+    
+  </article> 
+</section>
