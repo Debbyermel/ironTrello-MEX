@@ -14,7 +14,7 @@ export class CardService {
   ) { }
 
   removeItem(item){
-    return this.http.delete('http://localhost:3000/api/cards/'+item._id)
+    return this.http.delete('/api/cards/'+item._id)
     .map((res:Response)=>res.json())
     .map(item=>item)
     .catch(e=>{
@@ -24,7 +24,7 @@ export class CardService {
   }
 
   patchItem(item):Observable<any>{
-    return this.http.patch('http://localhost:3000/api/cards/'+item._id, item)
+    return this.http.patch('/api/cards/'+item._id, item)
     .map((res:Response)=>res.json())
     .map(item=>item)
     .catch(e=>{
@@ -34,7 +34,7 @@ export class CardService {
   }
 
   fetchItems():Observable<any>{
-    return this.http.get('http://localhost:3000/api/cards')
+    return this.http.get('/api/cards')
     .map((res:Response)=>res.json())
     .map(items=>items)
     .catch(e=>{
@@ -44,7 +44,7 @@ export class CardService {
   }
 
   addItem(item):Observable<any>{
-    return this.http.post('http://localhost:3000/api/cards', item)
+    return this.http.post('/api/cards', item)
     .map((res:Response)=>res.json())
     .map(function(item){
       return item;
