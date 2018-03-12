@@ -1,14 +1,15 @@
 const Schema = require("mongoose").Schema;
 
-const listSchema = new require("mongoose").Schema({
+const cardSchema = new require("mongoose").Schema({
     title:{
         type:String,
         required:true
     },
-    cards:[{
+    list:{
         type:Schema.Types.ObjectId,
-        ref:"Card"
-    }]
+        ref:"List",
+        required:true
+    }
 },
 {
     timestamps:{
@@ -17,4 +18,4 @@ const listSchema = new require("mongoose").Schema({
     }
 });
 
-module.exports = require("mongoose").model("List", listSchema);
+module.exports = require("mongoose").model("Card", cardSchema);

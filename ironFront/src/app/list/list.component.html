@@ -6,5 +6,11 @@
       <fa (click)="deleteList()" [name]="'trash'"></fa>
     </div>
     
+    <div class="cards-container" [dragula]="cards" [dragulaModel]="list.cards">
+      <app-card (refrescaAbuelo)="refreshPapa()" [card]="card" *ngFor="let card of list.cards" ></app-card>
+    </div>
+
+    <input (keydown.enter)="addCard(cardTitle)" [(ngModel)]="cardTitle" type="text" placeholder="Add Card...">
+    
   </article> 
 </section>

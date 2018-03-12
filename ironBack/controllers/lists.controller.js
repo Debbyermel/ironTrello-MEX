@@ -14,6 +14,7 @@ exports.patchList = (req,res,next)=>{
 
 exports.getLists = function(req, res, next) {
     List.find()
+    .populate("cards")
     .then(lists=>res.status(200).json(lists))
     .catch(e=>res.status(500).send(e));
   }

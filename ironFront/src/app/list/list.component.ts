@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {CardService} from '../services/card.service';
+import {ListService} from '../services/list.service';
 
 @Component({
   selector: 'app-list',
@@ -9,9 +11,36 @@ export class ListComponent implements OnInit {
   @Input() list;
   @Output() editTitle = new EventEmitter<any>(); 
   @Output() removeList = new EventEmitter<any>();
+  @Output() refreshLists = new EventEmitter<any>();
   showEdit:boolean = false;
-  constructor() { }
+  cards:Array<any>;
+  cardTitle;
+  constructor(
+    private cardService: CardService,
+    private listService: ListService
+  ) { }
 
+  refreshPapa(){
+    this.refreshLists.emit();
+  }
+
+  addCard(cardTitle){
+    const newCard = {
+      title:cardTitle,
+      list:this.list._id
+    }
+    this.cardService.addItem(newCard)
+    .subscribe(card=>{
+      this.cardTitle = "";
+      //modificamos la list:
+      this.list.cards.push(card._id);
+      this.listService.patchList(this.list)
+      .subscribe(list=>{
+        //console.log("test")
+        this.refreshLists.emit();
+      })
+    })
+  }
 
   deleteList(){
     if(!confirm("estas seguro?")) return;
@@ -28,7 +57,15 @@ export class ListComponent implements OnInit {
     this.showEdit = false;
   }
 
+  getCards(){
+    this.cardService.fetchItems()
+    .subscribe(cards=>{
+      this.cards = cards;
+    })
+  }
+
   ngOnInit() {
+    this.getCards();
   }
 
 }

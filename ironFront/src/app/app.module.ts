@@ -10,6 +10,7 @@ import { CardComponent } from './card/card.component';
 
 //services
 import {ListService} from './services/list.service';
+import {CardService} from './services/card.service';
 
 //extra libraries
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
@@ -29,7 +30,7 @@ import {DragulaModule} from 'ng2-dragula';
     Angular2FontawesomeModule,
     DragulaModule
   ],
-  providers: [ListService],
+  providers: [ListService, CardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

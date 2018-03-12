@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var lists = require('./routes/lists');
+const cards = require('./routes/cards');
 
 var app = express();
 app.use(require("cors")());
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/api/lists', lists);
+app.use('/api/cards', cards);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

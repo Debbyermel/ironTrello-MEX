@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {CardService} from '../services/card.service';
 
 @Component({
   selector: 'app-card',
@@ -6,8 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card.component.css']
 })
 export class CardComponent implements OnInit {
+  @Input() card;
+  @Output() refrescaAbuelo = new EventEmitter<any>();
+  constructor(private cardService:CardService) { }
 
-  constructor() { }
+  deleteCard(){
+    if(!confirm("seguro? D=")) return;
+    this.cardService.removeItem(this.card)
+    .subscribe(card=>{
+      this.refrescaAbuelo.emit();
+    })
+  }
 
   ngOnInit() {
   }
