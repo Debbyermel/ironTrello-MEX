@@ -15,7 +15,13 @@ const cards = require('./routes/cards');
 const auth =  require('./routes/auth');
 
 var app = express();
-app.use(require("cors")());
+const cors = require("cors");
+const corsOptions = {
+  credentials:true,
+  origin:true
+}
+
+app.use(cors(corsOptions));
 
 require("mongoose").connect("mongodb://bliss:bliss@ds249798.mlab.com:49798/bliss");
 

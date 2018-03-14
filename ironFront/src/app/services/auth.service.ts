@@ -42,4 +42,7 @@ export class SessionService {
       .map(res => res.json())
       .catch(this.handleError);
   }
+
+
+
 }

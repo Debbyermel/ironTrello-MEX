@@ -8,7 +8,10 @@ exports.signUp = (req,res,next)=>{
 }
 
 exports.login = (req,res,next)=>{
-    res.status(200).json(req.user);
+    console.log(req.user);
+    const onlySafeData = req.user;
+    onlySafeData['hash'] = 'raulito';
+    res.status(200).json(onlySafeData);
 }
 
 exports.logout = (req, res, next) => {
@@ -24,3 +27,10 @@ exports.loggedin = (req, res, next) => {
   
     res.status(403).json({ message: 'Unauthorized' });
   }
+
+
+exports.getUsers = (req,res)=>{
+    User.find()
+    .then(users=>res.json(users))
+    .catch(e=>res.send(e))
+}
